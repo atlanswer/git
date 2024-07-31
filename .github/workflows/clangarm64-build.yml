@@ -16,10 +16,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: git-for-windows/setup-git-for-windows-sdk@v1
         with:
-          flavor: makepkg-git
+          flavor: build-installers
           architecture: aarch64
           # This assumes that the job is running on a self-hosted runner,
           # in which case we need to cleanup SDK files.
-          cleanup: true
+          # cleanup: true
       - name: Build Git CLANGARM64
         run: make -j`nproc`
+      - name: Build Git Installer
+        run: sdk build git-and-installer
